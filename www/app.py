@@ -24,10 +24,10 @@ def test():
     img = StringIO.StringIO()
     #y = [1,2,3,4,5]
     #x = [0,2,1,3,4]
-    raw_data="./rawdata/ZAR140513053959.RAW61NE"
+    raw_data="./rawdata/RAD140513053959.RAW61NE"
     radar=pyart.io.read_sigmet(raw_data)
     display = pyart.graph.RadarDisplay(radar)
-    display.plot('reflectivity',0,vmin=-10,vmax=64.)
+    display.plot('reflectivity',0,vmin=-10,vmax=64.,title="PPI TEST")
     #plt.plot(x,y)
     plt.savefig(img, format='png')
     img.seek(0)
