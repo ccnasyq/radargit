@@ -22,19 +22,19 @@ def main():
 @app.route("/image")
 def test():
     img = StringIO.StringIO()
-    #y = [1,2,3,4,5]
-    #x = [0,2,1,3,4]
     raw_data="./rawdata/RAD140513053959.RAW61NE"
     radar=pyart.io.read_sigmet(raw_data)
     display = pyart.graph.RadarDisplay(radar)
     display.plot('reflectivity',0,vmin=-10,vmax=64.,title="PPI TEST")
-    #plt.plot(x,y)
     plt.savefig(img, format='png')
+    plt.close()
     img.seek(0)
-
     plot_url = base64.b64encode(img.getvalue())
-
     return render_template('image.html', plot_url=plot_url)
+
+@app.route("/date")
+def dateshow():
+    return render_template('date.html')
 
 
 if __name__ == '__main__':
